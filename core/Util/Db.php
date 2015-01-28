@@ -12,7 +12,7 @@ class Db {
         try {
             self::$sql = new PDO($conf['dsn'], $conf['username'], $conf['password']);
         } catch (PDOException $e) {
-            echo 'Connection failed: ' . $e->getMessage();
+            throw new Exception('Connection failed: ' . $e->getMessage());
         }
     }
 
