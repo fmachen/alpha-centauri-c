@@ -12,6 +12,12 @@ Router::init();
 Router::map('/foo.*', function() {
     echo '<h1>FOOOOOO</h1>';
 });
+Router::map('/system/(.*)', function($script) {
+    $filepath = "system/$script.php";
+    if (file_exists($filepath)) {
+        include $filepath;
+    }
+});
 Router::map('/', function() use ($user) {
     echo "<h1>Home - $user</h1>";
 });

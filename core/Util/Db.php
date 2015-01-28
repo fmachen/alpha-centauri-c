@@ -2,6 +2,10 @@
 
 class Db {
 
+    /**
+     *
+     * @var PDO
+     */
     public static $sql;
 
     public static function init() {

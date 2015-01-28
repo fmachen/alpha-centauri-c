@@ -24,8 +24,9 @@ class Router {
 
     public static function run() {
         foreach (self::$mapping as $pattern => $closure) {
-            if (preg_match("#^$pattern$#", self::$path)) {
-                return $closure();
+            if (preg_match("#^$pattern$#", self::$path, $matches)) {
+                array_shift($matches);
+                return call_user_func_array($closure, $matches);
             }
         }
         throw new Exception('Route not Found');
