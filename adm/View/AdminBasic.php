@@ -3,7 +3,7 @@
 namespace View;
 
 class AdminBasic {
-    
+
     public static function displayHeader($title = 'undefined title') {
 ?>
 <!DOCTYPE html>

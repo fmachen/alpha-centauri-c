@@ -19,7 +19,7 @@ Router::map('/system/(.*)', function($script) {
     }
 });
 Router::map('(login|logout)$', function($methodAction) {
-    (new Manager\UserManager())->$methodAction();
+    (new \Manager\UserManager())->$methodAction();
 });
 Router::map('/(\w+)/(\w+)', function($controller, $methodAction) {
     $object = ucfirst($controller);
@@ -31,8 +31,3 @@ Router::map('/(\w+)/(\w+)', function($controller, $methodAction) {
     }
 });
 Router::run();
-
-// template
-
-echo '<p>adm</p>';
-
