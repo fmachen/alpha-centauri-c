@@ -1,33 +1,33 @@
 <?php
 
-require '../core/autoload.php';
-
 Config::loadFile('../cfg/config.ini');
 
-Db::init();
+require_once __DIR__.'/../vendor/autoload.php';
 
-$user = 'admin';
+$app = new Silex\Application();
 
-Router::init();
-Router::map('^/$', function() use ($user) {
-    echo "<h1>Home - $user</h1>";
+$app->get('/hello/{name}', function ($name) use ($app) {
+    return 'Hello '.$app->escape($name);
 });
-Router::map('/system/(.*)', function($script) {
+$app->get('/', function () use ($app) {
+    return '<h1>Home</h1>';
+});
+$app->get('/system/{script}', function ($script) use ($app) {
     $filepath = "system/$script.php";
     if (file_exists($filepath)) {
         include $filepath;
     }
 });
-Router::map('(login|logout)$', function($methodAction) {
-    (new \Manager\UserManager())->$methodAction();
-});
-Router::map('/(\w+)/(\w+)', function($controller, $methodAction) {
+$app->get('/{controller}/{method}', function ($controller, $method) use ($app) {
     $object = ucfirst($controller);
     var_dump($object, class_exists($object));
-    if (class_exists($object) && $class = new $object() && method_exists($class, $methodAction)) {
-        (new $class())->$methodAction();
+    if (class_exists($object) && $class = new $object() && method_exists($class, $method)) {
+        (new $class())->$method();
     } else {
         echo "pas glop";
     }
 });
-Router::run();
+
+$app->run();
+
+Db::init();
