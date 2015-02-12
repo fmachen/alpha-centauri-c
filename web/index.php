@@ -5,8 +5,10 @@ $loader->add('Entity', __DIR__.'/../app');
 
 $app = new Silex\Application();
 
+$app['debug'] = true;
+
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__ . '/../views',
+    'twig.path' => __DIR__ . '/../resources/views',
 ));
 
 $app->get('/', function () use ($app) {
