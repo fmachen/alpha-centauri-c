@@ -1,4 +1,4 @@
-cfg/config.ini
 composer.lock
 composer.phar
 vendor
+resources/config/config.ini
