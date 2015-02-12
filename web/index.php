@@ -1,14 +1,23 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$loader = require_once __DIR__.'/../vendor/autoload.php';
+$loader->add('Entity', __DIR__.'/../app');
 
 $app = new Silex\Application();
 
-$app->get('/hello/{name}', function ($name) use ($app) {
-    return 'Hello ' . $app->escape($name);
-});
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+    'twig.path' => __DIR__ . '/../views',
+));
+
 $app->get('/', function () use ($app) {
     return '<h1>Home</h1>';
+});
+$app->get('/hello/{name}', function ($name) use ($app) {
+    $user = new \Entity\User();
+    var_dump($user);
+    return $app['twig']->render('hello.twig', array(
+        'name' => $name,
+    ));
 });
 $app->get('/system/{script}', function ($script) use ($app) {
     $filepath = "system/$script.php";
