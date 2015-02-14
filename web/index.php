@@ -1,7 +1,7 @@
 <?php
 
 $loader = require_once __DIR__.'/../vendor/autoload.php';
-$loader->add('Entity', __DIR__.'/../app');
+$loader->add('Acc', __DIR__.'/../src');
 
 $app = new Silex\Application();
 
@@ -15,8 +15,8 @@ $app->get('/', function () use ($app) {
     return '<h1>Home</h1>';
 });
 $app->get('/hello/{name}', function ($name) use ($app) {
-    $user = new \Entity\User();
-    var_dump($user);
+    $user = new Acc\Entity\User();
+    $manager = (new Acc\Controller\UserController())->loginAction();
     return $app['twig']->render('hello.twig', array(
         'name' => $name,
     ));

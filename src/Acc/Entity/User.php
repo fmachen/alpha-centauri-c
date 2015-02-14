@@ -1,6 +1,6 @@
 <?php
 
-namespace Entity;
+namespace Acc\Entity;
 
 class User {
 
