@@ -1,5 +1,7 @@
 <?php
 
+namespace Acc\Util;
+
 class Config {
 
     private static $_config;

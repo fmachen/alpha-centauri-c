@@ -50,6 +50,11 @@ class User {
         return $this->enabled;
     }
 
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
+
     public function setName($name) {
         $this->name = $name;
         return $this;
@@ -75,8 +80,18 @@ class User {
         return $this;
     }
 
+    public function setCreated($created) {
+        $this->created = $created;
+        return $this;
+    }
+
     public function setLastLogin($lastLogin) {
         $this->lastLogin = $lastLogin;
+        return $this;
+    }
+
+    public function setEnabled($enabled) {
+        $this->enabled = $enabled;
         return $this;
     }
 

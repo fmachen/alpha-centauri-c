@@ -1,10 +1,12 @@
 <?php
 
+namespace Acc\Util;
+
 class Db {
 
     /**
      *
-     * @var PDO
+     * @var \PDO
      */
     public static $sql;
 
@@ -14,7 +16,7 @@ class Db {
             throw new Exception('Config error: mysql section missing in config.ini');
         }
         try {
-            self::$sql = new PDO($conf['dsn'], $conf['username'], $conf['password']);
+            self::$sql = new \PDO($conf['dsn'], $conf['username'], $conf['password']);
         } catch (PDOException $e) {
             throw new Exception('Connection failed: ' . $e->getMessage());
         }

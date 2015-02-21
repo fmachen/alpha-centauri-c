@@ -1,7 +1,10 @@
 <?php
 
-$loader = require_once __DIR__.'/../vendor/autoload.php';
-$loader->add('Acc', __DIR__.'/../src');
+$loader = require_once __DIR__ . '/../vendor/autoload.php';
+$loader->add('Acc', __DIR__ . '/../src');
+
+\Acc\Util\Config::loadFile('../resources/config/config.ini');
+\Acc\Util\Db::init();
 
 $app = new Silex\Application();
 
@@ -18,7 +21,7 @@ $app->get('/hello/{name}', function ($name) use ($app) {
     $user = new Acc\Entity\User();
     $manager = (new Acc\Controller\UserController())->loginAction();
     return $app['twig']->render('hello.twig', array(
-        'name' => $name,
+                'name' => $name,
     ));
 });
 $app->get('/system/{script}', function ($script) use ($app) {
@@ -27,12 +30,13 @@ $app->get('/system/{script}', function ($script) use ($app) {
         include $filepath;
     }
 });
-$app->get('/{controller}/{method}', function ($controller, $method) use ($app) {
-    $object = ucfirst($controller);
-    if (class_exists($object) && $class = new $object() && method_exists($class, $method)) {
-        (new $class())->$method();
+$app->get('/{object}/{action}', function ($object, $action) use ($app) {
+    $controller = "Acc\Controller\\" . ucfirst($object) . "Controller";
+    $method = $action . "Action";
+    if (class_exists($controller) && method_exists($controller, $method)) {
+        return (new $controller())->$method();
     } else {
-        $app->abort(404, "Not Found, $object::$method");
+        return $app->abort(404, "Not Found, $controller::$method");
     }
 });
 
