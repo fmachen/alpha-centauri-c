@@ -22,7 +22,8 @@ abstract class AbstractRepository {
      * @return Entity
      */
     public function findOneBy($properties = []) {
-        return $this->_findBy($properties, 1);
+        $find = $this->_findBy($properties, 1);
+        return isset($find[0]) ? $find[0] : null;
     }
 
     public function findAllBy($properties = []) {

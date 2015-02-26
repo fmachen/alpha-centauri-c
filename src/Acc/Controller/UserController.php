@@ -2,12 +2,35 @@
 
 namespace Acc\Controller;
 
-class UserController {
+class UserController extends AbstractController {
 
     public function loginAction() {
-        $repo = new \Acc\Repository\UserRepository();
-        $res = $repo->findAllBy();
-        var_dump($res);
+        $name = $this->app['request']->get('name');
+        $password = $this->app['request']->get('password');
+        if ($name && $password) {
+            $repo = new \Acc\Repository\UserRepository();
+            $user = $repo->findOneBy([
+                'name' => $name,
+                'password' => $password
+            ]);
+            if ($user) {
+                $this->app['session']->set('user', $user);
+                echo 'ok';
+            } else {
+                $this->app['session']->set('user', new \Acc\Entity\User());
+                echo 'ko';
+            }
+        }
+        return <<<HTML
+<form method="post">
+    <label>Username</label>
+    <input type="text" name="name" value="$name">
+    <label>Password</label>
+    <input type="password" name="password" value="$password">
+    <input type="submit">
+</form>
+HTML;
+        /*/
         $en = new \Acc\Entity\User();
         $en
                 ->setId('4')
@@ -22,8 +45,13 @@ class UserController {
         var_dump($repo->delete($en));
         var_dump($repo->create($en));
         var_dump($repo->update($en));
-
+        //*/
         return 'tt';
+    }
+
+    public function logoutAction() {
+        $app['session']->set('user', new \Acc\Entity\User());
+        return $this->app->redirect('login');
     }
 
 }
