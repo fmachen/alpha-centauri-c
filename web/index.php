@@ -3,16 +3,9 @@
 $loader = require_once __DIR__ . '/../vendor/autoload.php';
 $loader->add('Acc', __DIR__ . '/../src');
 
-\Acc\Util\Config::loadFile('../resources/config/config.ini');
-\Acc\Util\Db::init();
-
 $app = new Silex\Application();
 
-$app['debug'] = true;
-$app->register(new Silex\Provider\SessionServiceProvider());
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__ . '/../resources/views',
-));
+require __DIR__ . '/../resources/config/config.php';
 
 if (!$app['session']->get('user')) {
     $app['session']->set('user', new \Acc\Entity\User());
