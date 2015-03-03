@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}[titre à définir]{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ app.request.baseUrl~'assets/css/normalize.css' }}" rel="stylesheet" type="text/css" />
+            <link href="{{ app.request.baseUrl~'assets/css/common.css' }}" rel="stylesheet" type="text/css" />
+        {% block addcss %}{% endblock %}
+    {% endblock %}
+
+    <link rel="icon" type="image/x-icon" href="{{ app.request.baseUrl~'favicon.ico' }}" />
+</head>
+<body>
+    {% block body %}
+        {# Gestion des messages flash #}
+        {% for type in ['info', 'success', 'error'] %}
+            {% for message in app.session.flashbag.get(type) %}
+                <div class="alert alert-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <div class="row">
+            <h1>Alpha-centuri-c</h1>
+            <nav>
+            </nav>
+            {# Gestion de la connexion #}
+            <div class="user-access">
+                <ul>
+                    {% if app %}
+                        <li>
+                            <a href="{{ 'frost_stream_admin_homepage' }}">Admin</a>
+                        </li>
+                        <li>
+                            <a href="{{ 'fos_user_profile_show' }}">Profil</a>
+                        </li>
+                        <li>
+                            <a href="{{ 'fos_user_security_logout' }}">Déconnexion</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{{ 'fos_user_security_login' }}">Connexion</a>
+                        </li>
+                        <li>
+                            <a href="{{ 'fos_user_registration_register' }}">S'enregistrer</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    {% block subbody %}{% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+{% block addjs %}{% endblock %}
+{% endblock %}
+</body>
+</html>

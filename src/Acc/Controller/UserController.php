@@ -21,6 +21,9 @@ class UserController extends AbstractController {
                 echo 'ko';
             }
         }
+        return $this->app['twig']->render('login/login.html.twig', array(
+                    'name' => $name,
+        ));
         return <<<HTML
 <form method="post">
     <label>Username</label>
@@ -30,22 +33,22 @@ class UserController extends AbstractController {
     <input type="submit">
 </form>
 HTML;
-        /*/
-        $en = new \Acc\Entity\User();
-        $en
-                ->setId('4')
-                ->setName('Test')
-                ->setCanonical('test')
-                ->setEmail('test')
-                ->setSalt('test')
-                ->setPassword('test')
-                ->setCreated('2015-02-16 16:58:23')
-                ->setLastLogin('2015-02-16 16:58:23')
-        ;
-        var_dump($repo->delete($en));
-        var_dump($repo->create($en));
-        var_dump($repo->update($en));
-        //*/
+        /*
+          $en = new \Acc\Entity\User();
+          $en
+          ->setId('4')
+          ->setName('Test')
+          ->setCanonical('test')
+          ->setEmail('test')
+          ->setSalt('test')
+          ->setPassword('test')
+          ->setCreated('2015-02-16 16:58:23')
+          ->setLastLogin('2015-02-16 16:58:23')
+          ;
+          var_dump($repo->delete($en));
+          var_dump($repo->create($en));
+          var_dump($repo->update($en));
+          // */
         return 'tt';
     }
 
