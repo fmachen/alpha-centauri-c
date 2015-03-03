@@ -1,6 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block subbody %}
+    {{ dump(user) }}
     <form method="post">
         <label>Username</label>
         <input type="text" name="name" value="{{ user.name }}">
@@ -8,5 +9,4 @@
         <input type="password" name="password" value="{{ user.password }}">
         <input type="submit">
     </form>
-    {{ dump(user) }}
 {% endblock %}

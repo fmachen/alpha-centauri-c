@@ -16,13 +16,14 @@ class UserController extends AbstractController {
             ]);
             if ($user) {
                 $this->app['session']->set('user', $user);
-                echo 'ok';
+                $this->app['session']->getFlashBag()->add('success', 'Connected.');
             } else {
                 $this->app['session']->set('user', new \Acc\Entity\User());
-                echo 'ko';
+                $this->app['session']->getFlashBag()->add('error', 'Login error.');
+                $user = new \Acc\Entity\User();
             }
         }
-        return $this->app['twig']->render('login/login.html.twig', array(
+        return $this->app['twig']->render('user/login.html.twig', array(
                     'user' => $user
         ));
         /*
@@ -45,7 +46,15 @@ class UserController extends AbstractController {
 
     public function logoutAction() {
         $this->app['session']->set('user', new \Acc\Entity\User());
+        $this->app['session']->getFlashBag()->add('info', 'You are disconnected.');
         return $this->app->redirect('login');
+    }
+
+    public function profileAction() {
+        $user = $this->app['session']->get('user');
+        return $this->app['twig']->render('user/profile.html.twig', array(
+                    'user' => $user
+        ));
     }
 
 }
