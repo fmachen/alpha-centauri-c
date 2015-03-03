@@ -50,6 +50,13 @@ class UserController extends AbstractController {
         return $this->app->redirect('login');
     }
 
+    public function registerAction() {
+        $user = $this->app['session']->get('user');
+        return $this->app['twig']->render('user/register.html.twig', array(
+                    'user' => $user
+        ));
+    }
+
     public function profileAction() {
         $user = $this->app['session']->get('user');
         return $this->app['twig']->render('user/profile.html.twig', array(

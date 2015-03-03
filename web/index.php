@@ -12,13 +12,7 @@ if (!$app['session']->get('user')) {
 }
 
 $app->match('/', function () use ($app) {
-    return '<h1>Home</h1>';
-});
-$app->match('/hello/{name}', function ($name) use ($app) {
-    $user = new Acc\Entity\User();
-    $manager = (new Acc\Controller\UserController())->loginAction();
     return $app['twig']->render('hello.twig', array(
-                'name' => $name,
     ));
 });
 $app->match('/system/{script}', function ($script) use ($app) {

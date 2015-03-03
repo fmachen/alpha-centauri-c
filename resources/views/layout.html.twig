@@ -28,7 +28,7 @@
             {# Gestion de la connexion #}
             <div class="user-access">
                 <ul>
-                    {% if app %}
+                    {% if user.name %}
                         <li>
                             <a href="{{ app.request.baseUrl~'/user/profile' }}">Profil</a>
                         </li>
