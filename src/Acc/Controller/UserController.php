@@ -7,6 +7,7 @@ class UserController extends AbstractController {
     public function loginAction() {
         $name = $this->app['request']->get('name');
         $password = $this->app['request']->get('password');
+        $user = new \Acc\Entity\User();
         if ($name && $password) {
             $repo = new \Acc\Repository\UserRepository();
             $user = $repo->findOneBy([
@@ -22,17 +23,8 @@ class UserController extends AbstractController {
             }
         }
         return $this->app['twig']->render('login/login.html.twig', array(
-                    'name' => $name,
+                    'user' => $user
         ));
-        return <<<HTML
-<form method="post">
-    <label>Username</label>
-    <input type="text" name="name" value="$name">
-    <label>Password</label>
-    <input type="password" name="password" value="$password">
-    <input type="submit">
-</form>
-HTML;
         /*
           $en = new \Acc\Entity\User();
           $en
@@ -49,11 +41,10 @@ HTML;
           var_dump($repo->create($en));
           var_dump($repo->update($en));
           // */
-        return 'tt';
     }
 
     public function logoutAction() {
-        $app['session']->set('user', new \Acc\Entity\User());
+        $this->app['session']->set('user', new \Acc\Entity\User());
         return $this->app->redirect('login');
     }
 

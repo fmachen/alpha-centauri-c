@@ -1,5 +1,12 @@
 {% extends "layout.html.twig" %}
 
 {% block subbody %}
-{{ dump(app.request.baseUrl) }}
+    <form method="post">
+        <label>Username</label>
+        <input type="text" name="name" value="{{ user.name }}">
+        <label>Password</label>
+        <input type="password" name="password" value="{{ user.password }}">
+        <input type="submit">
+    </form>
+    {{ dump(user) }}
 {% endblock %}

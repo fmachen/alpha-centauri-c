@@ -4,12 +4,12 @@
         <meta charset="UTF-8" />
         <title>{% block title %}[titre à définir]{% endblock %}</title>
         {% block stylesheets %}
-            <link href="{{ app.request.baseUrl~'assets/css/normalize.css' }}" rel="stylesheet" type="text/css" />
-            <link href="{{ app.request.baseUrl~'assets/css/common.css' }}" rel="stylesheet" type="text/css" />
+            <link href="{{ app.request.baseUrl~'/assets/css/normalize.css' }}" rel="stylesheet" type="text/css" />
+            <link href="{{ app.request.baseUrl~'/assets/css/common.css' }}" rel="stylesheet" type="text/css" />
         {% block addcss %}{% endblock %}
     {% endblock %}
 
-    <link rel="icon" type="image/x-icon" href="{{ app.request.baseUrl~'favicon.ico' }}" />
+    <link rel="icon" type="image/x-icon" href="{{ app.request.baseUrl~'/favicon.ico' }}" />
 </head>
 <body>
     {% block body %}
@@ -30,20 +30,17 @@
                 <ul>
                     {% if app %}
                         <li>
-                            <a href="{{ 'frost_stream_admin_homepage' }}">Admin</a>
+                            <a href="{{ app.request.baseUrl~'/user/profile' }}">Profil</a>
                         </li>
                         <li>
-                            <a href="{{ 'fos_user_profile_show' }}">Profil</a>
-                        </li>
-                        <li>
-                            <a href="{{ 'fos_user_security_logout' }}">Déconnexion</a>
+                            <a href="{{ app.request.baseUrl~'/user/logout' }}">Déconnexion</a>
                         </li>
                     {% else %}
                         <li>
-                            <a href="{{ 'fos_user_security_login' }}">Connexion</a>
+                            <a href="{{ app.request.baseUrl~'/user/login' }}">Connexion</a>
                         </li>
                         <li>
-                            <a href="{{ 'fos_user_registration_register' }}">S'enregistrer</a>
+                            <a href="{{ app.request.baseUrl~'/user/register' }}">S'enregistrer</a>
                         </li>
                     {% endif %}
                 </ul>
