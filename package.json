@@ -1,0 +1,29 @@
+{
+  "name": "alpha-centauri-c",
+  "version": "1.0.0",
+  "description": "Spatial management video games on the web",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmachen/alpha-centauri-c.git"
+  },
+  "keywords": [
+    "spatial",
+    "mmo"
+  ],
+  "author": "fmachen, LemoineSimon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fmachen/alpha-centauri-c/issues"
+  },
+  "homepage": "https://github.com/fmachen/alpha-centauri-c#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "phaser-ce": "^2.7.9",
+    "socket.io": "^2.0.1"
+  }
+}
