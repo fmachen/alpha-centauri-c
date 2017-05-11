@@ -21,6 +21,7 @@ game.movePlayer = function (id, x, y) {
     var player = game.playerMap[id];
     var distance = Phaser.Math.distance(player.x, player.y, x, y);
     var tween = game.add.tween(player);
+    console.log(player);
     var duration = distance * 10;
     tween.to({x: x, y: y}, duration);
     tween.start();
