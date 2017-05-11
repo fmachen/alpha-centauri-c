@@ -5,10 +5,10 @@ var playState = {
         game.load.spritesheet('characters', 'assets/sprites/characters.png', 32, 40);
     },
     create: function(){
-
+/*
+ game.physics.arcade.enable(this.player);
         // Add player and set properties
         this.player = game.add.sprite(game.width/2,game.height/2,'characters');
-        game.physics.arcade.enable(this.player);
         this.player.body.collideWorldBounds = true;
         this.player.animations.add('up', [36, 37, 38], 10, true);
         this.player.animations.add('down', [0, 1, 2], 10, true);
@@ -17,7 +17,10 @@ var playState = {
 
         // Create cursors
         this.cursors = game.input.keyboard.createCursorKeys();
+//*/
+        Client.askNewPlayer();
     },
+    /*
     update: function(){
         this.player.moving = false;
         if( this.cursors.up.isDown ){
@@ -47,5 +50,6 @@ var playState = {
             this.player.animations.stop();
         }
     }
+    //*/
 
 }
