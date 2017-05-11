@@ -8,7 +8,8 @@ game.playerMap = {};
 
 game.getCoordinates = function (layer, pointer) {
     console.log("getCoordinates");
-    Client.sendClick(pointer.worldX, pointer.worldY);
+    console.log("pointer", pointer);
+    Client.sendClick(pointer.clientX, pointer.clientY);
 };
 
 game.addNewPlayer = function (id, x, y) {
@@ -21,7 +22,6 @@ game.movePlayer = function (id, x, y) {
     var player = game.playerMap[id];
     var distance = Phaser.Math.distance(player.x, player.y, x, y);
     var tween = game.add.tween(player);
-    console.log(player);
     var duration = distance * 10;
     tween.to({x: x, y: y}, duration);
     tween.start();

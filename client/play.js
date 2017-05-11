@@ -19,7 +19,7 @@ var playState = {
         this.cursors = game.input.keyboard.createCursorKeys();
 //*/
         game.inputEnabled= true;
-        game.input.onTap.add(game.getCoordinates, this);
+        game.input.onDown.add(game.getCoordinates, this);
         Client.askNewPlayer();
     },
     /*
