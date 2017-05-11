@@ -22,8 +22,6 @@
   },
   "homepage": "https://github.com/fmachen/alpha-centauri-c#readme",
   "dependencies": {
-    "express": "^4.15.2",
-    "phaser-ce": "^2.7.9",
     "socket.io": "^2.0.1"
   }
 }

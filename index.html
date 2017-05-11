@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Alpha-Centauri-C</title>
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-
+<div id="game"></div>
+<script>
+    var socket = io('http://localhost:8081');
+    socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', {my: 'data'});
+    });
+</script>
 </body>
 </html>
