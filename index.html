@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Alpha-Centauri-C</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client/vendor/phaser.min.js"></script>
 </head>
 <body>
 <div id="game"></div>
-<script src="/socket.io/socket.io.js"></script>
 <script>
     var socket = io(window.location.href);
     socket.on('news', function (data) {
         console.log(data);
-        socket.emit('my other event', { my: 'data' });
+        socket.emit('my other event', {my: 'data'});
     });
 </script>
+<script src="client/game.js"></script>
 </body>
 </html>
