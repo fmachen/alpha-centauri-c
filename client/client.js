@@ -15,19 +15,19 @@ client.sendClick = function (x, y) {
 };
 
 client.socket.on('newplayer', function (data) {
-    game.addNewPlayer(data.id, data.x, data.y);
+    Player.add(data.id, data.x, data.y);
 });
 
 client.socket.on('allplayers', function (data) {
     for (var i = 0; i < data.length; i++) {
-        game.addNewPlayer(data[i].id, data[i].x, data[i].y);
+        Player.add(data[i].id, data[i].x, data[i].y);
     }
 });
 
 client.socket.on('move', function (data) {
-    game.movePlayer(data.id, data.x, data.y);
+    Player.move(data.id, data.x, data.y);
 });
 
 client.socket.on('remove', function (id) {
-    game.removePlayer(id);
+    Player.remove(id);
 });
