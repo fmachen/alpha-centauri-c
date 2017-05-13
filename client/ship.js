@@ -1,57 +1,47 @@
-'use strict';
-var shipState = {
-    player: null,
-    preload: function () {
-        game.stage.disableVisibilityChange = true;
-        game.load.spritesheet('characters', 'assets/sprites/characters.png', 32, 40);
-    },
-    create: function () {
+var Ship = function(type){
+    this.type = type;
+    this.readFile();
+};
 
-        this.player = Player.create();
-        Client.sendNewPlayer(
-            {
-                x: this.player.body.x,
-                y: this.player.body.y
-            }
-        );
-        Client.getPlayers();
-        // Create cursors
-        this.cursors = game.input.keyboard.createCursorKeys();
-        /*game.inputEnabled = true;
-         game.input.onDown.add(function (layer, pointer) {
-         client.sendClick(pointer.clientX, pointer.clientY);
-         }, this);*/
-        //client.askNewPlayer();
-    },
-    update: function () {
-        this.player.moving = false;
-        if (this.cursors.up.isDown) {
-            this.player.moving = true;
-            this.player.body.y -= 5;
-            this.player.animations.play('up');
-        }
+Ship.prototype.loadTiles = function(){
+    var self = this;
+    console.log('loadTiles');
+    console.log(this.type);
+    //this.getTiles();
+    var shipMap = game.load.tilemap('map','assets/ships/ship-test.json',null,Phaser.Tilemap.TILED_JSON);
+    console.log(shipMap);
+    shipMap.onLoadComplete.addOnce(function(){
+        // Créer la map
+        self.create();
+    });
+};
 
-        if (this.cursors.down.isDown) {
-            this.player.moving = true;
-            this.player.body.y += 5;
-            this.player.animations.play('down');
-        }
+Ship.prototype.readFile = function(){
+    var self = this;
+    Utils.readTextFile('assets/ships/ship-'+this.type+'.json', function(text){
+        self.shipJson = JSON.parse(text);
+        console.log(self.shipJson);
+        self.getTiles();
+    });
+};
 
-        if (this.cursors.left.isDown) {
-            this.player.moving = true;
-            this.player.body.x -= 5;
-            this.player.animations.play('left');
-        }
-
-        if (this.cursors.right.isDown) {
-            this.player.moving = true;
-            this.player.body.x += 5;
-            this.player.animations.play('right');
-        }
-        if (!this.player.moving) {
-            this.player.animations.stop();
-        } else {
-            Client.sendMove(this.player.body.x, this.player.body.y);
-        }
+Ship.prototype.getTiles = function(){
+    for( var i = 0; i < this.shipJson.tilesets.length; i++ ){
+        game.load.image(this.shipJson.tilesets[i].name, 'assets/tiles/'+this.shipJson.tilesets[i].name+'.png');
     }
+    // Lancer le chargement de la map
+    this.loadTiles();
+
+}
+
+Ship.prototype.create = function(){
+    var map = game.add.tilemap('map');
+    console.log(map);
+    for( var i = 0; i < this.shipJson.tilesets.length; i++ ){
+        map.addTilesetImage(this.shipJson.tilesets[i].name);
+    }
+    for( var l = 0; l < this.shipJson.layers.length; l++ ){
+        layer = map.createLayer(this.shipJson.layers[l].name);
+    }
+    layer.resizeWorld();
 };
