@@ -16,27 +16,37 @@ Client.sendMove = function (x, y) {
     Client.socket.emit('move', {x: x, y: y});
 };
 
+Client.getPlayers = function () {
+    Client.socket.emit('getPlayers');
+};
+
 
 
 Client.socket.on('message',function(data){
-    console.log(data);
+    game.me = data;
 });
 
 Client.socket.on('newplayer', function (data) {
-    console.log('newplayer');
-    Player.add(data.id, data.x, data.y);
+    console.log('newplayer', data);
+
+    Player.add(data.idSocket, data.x, data.y);
 });
 
 Client.socket.on('allplayers', function (data) {
     for (var i = 0; i < data.length; i++) {
-        Player.add(data[i].id, data[i].x, data[i].y);
+        if(data[i].idSocket != game.me){
+            continue;
+        }
+        Player.add(data[i].idSocket, data[i].x, data[i].y);
     }
 });
 
 Client.socket.on('move', function (data) {
-    Player.move(data.id, data.x, data.y);
+    console.log('Player '+data.idSocket+' moving !');
+    Player.move(data.idSocket, data.x, data.y);
 });
 
 Client.socket.on('remove', function (id) {
+    console.log('remove',id);
     Player.remove(id);
 });

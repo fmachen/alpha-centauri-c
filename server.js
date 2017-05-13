@@ -68,7 +68,6 @@ io.on('connection', function (client) {
             x: player.x,
             y: player.y
         };
-        //socket.emit('allplayers', getAllPlayers());
         client.broadcast.emit('newplayer', client.player);
     });
     client.on('move', function (data) {
@@ -78,6 +77,10 @@ io.on('connection', function (client) {
         client.player.x = data.x;
         client.player.y = data.y;
         client.broadcast.emit('move', client.player);
+    });
+
+    client.on('getPlayers',function () {
+        client.emit('allplayers', getAllPlayers());
     });
 
     client.on('disconnect', function () {

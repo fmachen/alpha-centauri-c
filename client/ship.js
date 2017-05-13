@@ -14,6 +14,7 @@ var shipState = {
                 y: this.player.body.y
             }
         );
+        Client.getPlayers();
         // Create cursors
         this.cursors = game.input.keyboard.createCursorKeys();
         /*game.inputEnabled = true;

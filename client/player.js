@@ -14,6 +14,7 @@ Player.create = function(x, y){
 Player.add = function(id, x, y){
     console.log("addNewPlayer");
     game.playerMap[id] = Player.create(x, y);
+    console.log(game.playerMap[id]);
 }
 
 Player.remove = function (id) {
@@ -23,11 +24,13 @@ Player.remove = function (id) {
 };
 
 Player.move = function (id, x, y) {
-    console.log("movePlayer");
+    //console.log("movePlayer");
     var player = game.playerMap[id];
-    var distance = Phaser.Math.distance(player.x, player.y, x, y);
+    player.x = x;
+    player.y = y;
+    /*var distance = Phaser.Math.distance(player.x, player.y, x, y);
     var tween = game.add.tween(player);
     var duration = distance * 10;
     tween.to({x: x, y: y}, duration);
-    tween.start();
+    tween.start();*/
 };
