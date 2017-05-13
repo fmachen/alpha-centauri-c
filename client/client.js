@@ -1,33 +1,42 @@
-var client = {};
-client.socket = io.connect(window.location.href);
+var Client = {};
+Client.socket = io.connect(window.location.href);
 
-client.sendTest = function () {
+
+Client.sendTest = function () {
     console.log("test sent");
-    client.socket.emit('test');
+    Client.socket.emit('test');
 };
 
-client.askNewPlayer = function () {
-    client.socket.emit('newplayer');
+Client.sendNewPlayer = function (player) {
+    console.log(player);
+    Client.socket.emit('newplayer',player);
 };
 
-client.sendClick = function (x, y) {
-    client.socket.emit('click', {x: x, y: y});
+Client.sendMove = function (x, y) {
+    Client.socket.emit('move', {x: x, y: y});
 };
 
-client.socket.on('newplayer', function (data) {
+
+
+Client.socket.on('message',function(data){
+    console.log(data);
+});
+
+Client.socket.on('newplayer', function (data) {
+    console.log('newplayer');
     Player.add(data.id, data.x, data.y);
 });
 
-client.socket.on('allplayers', function (data) {
+Client.socket.on('allplayers', function (data) {
     for (var i = 0; i < data.length; i++) {
         Player.add(data[i].id, data[i].x, data[i].y);
     }
 });
 
-client.socket.on('move', function (data) {
+Client.socket.on('move', function (data) {
     Player.move(data.id, data.x, data.y);
 });
 
-client.socket.on('remove', function (id) {
+Client.socket.on('remove', function (id) {
     Player.remove(id);
 });

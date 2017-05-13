@@ -1,28 +1,27 @@
 'use strict';
 var shipState = {
+    player: null,
     preload: function () {
         game.stage.disableVisibilityChange = true;
         game.load.spritesheet('characters', 'assets/sprites/characters.png', 32, 40);
     },
     create: function () {
-        // Add player and set properties
-        /*this.player = game.add.sprite(game.width/2,game.height/2,'characters');
-         game.physics.arcade.enable(this.player);
-         this.player.body.collideWorldBounds = true;
-         this.player.animations.add('up', [36, 37, 38], 10, true);
-         this.player.animations.add('down', [0, 1, 2], 10, true);
-         this.player.animations.add('left', [12, 13, 14], 10, true);
-         this.player.animations.add('right', [24, 25, 26], 10, true);*/
 
+        this.player = Player.create();
+        Client.sendNewPlayer(
+            {
+                x: this.player.body.x,
+                y: this.player.body.y
+            }
+        );
         // Create cursors
         this.cursors = game.input.keyboard.createCursorKeys();
-        game.inputEnabled = true;
-        game.input.onDown.add(function (layer, pointer) {
+        /*game.inputEnabled = true;
+         game.input.onDown.add(function (layer, pointer) {
          client.sendClick(pointer.clientX, pointer.clientY);
-         }, this);
-        client.askNewPlayer();
-    }
-    /*,
+         }, this);*/
+        //client.askNewPlayer();
+    },
     update: function () {
         this.player.moving = false;
         if (this.cursors.up.isDown) {
@@ -50,8 +49,8 @@ var shipState = {
         }
         if (!this.player.moving) {
             this.player.animations.stop();
+        } else {
+            Client.sendMove(this.player.body.x, this.player.body.y);
         }
-    }*/
-
-
-}
+    }
+};

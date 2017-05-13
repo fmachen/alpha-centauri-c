@@ -56,32 +56,36 @@ function handler(request, response) {
 app.lastPlayderID = 0;
 app.playersList = [];
 
-io.on('connection', function (socket) {
-
-    socket.on('newplayer', function () {
+io.on('connection', function (client) {
+    console.log(client.id);
+    client.send(client.id);
+    client.on('newplayer', function (player) {
         console.log("newplayer");
-        socket.player = {
+        console.log(player);
+        client.player = {
             id: app.lastPlayderID++,
-            x: randomInt(100, 400),
-            y: randomInt(100, 400)
+            idSocket: client.id,
+            x: player.x,
+            y: player.y
         };
-        socket.emit('allplayers', getAllPlayers());
-        socket.broadcast.emit('newplayer', socket.player);
-
-        socket.on('click', function (data) {
-            console.log('click to ' + data.x + ', ' + data.y);
-            socket.player.x = data.x;
-            socket.player.y = data.y;
-            io.emit('move', socket.player);
-        });
-
-        socket.on('disconnect', function () {
-            console.log("disconnect");
-            io.emit('remove', socket.player.id);
-        });
+        //socket.emit('allplayers', getAllPlayers());
+        client.broadcast.emit('newplayer', client.player);
+    });
+    client.on('move', function (data) {
+        console.log(data);
+        console.log('click to ' + data.x + ', ' + data.y);
+        console.log(client.player);
+        client.player.x = data.x;
+        client.player.y = data.y;
+        client.broadcast.emit('move', client.player);
     });
 
-    socket.on('test', function () {
+    client.on('disconnect', function () {
+        console.log("disconnect");
+        client.broadcast.emit('remove', client.id);
+    });
+
+    client.on('test', function () {
         console.log('test received');
     });
 });

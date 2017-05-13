@@ -1,16 +1,19 @@
 var Player = function(){
-    this.me = null
 };
 
+Player.create = function(x, y){
+    var entity = game.add.sprite(x, y, 'characters');
+    game.physics.arcade.enable(entity);
+    entity.body.collideWorldBounds = true;
+    entity.animations.add('up', [36, 37, 38], 10, true);
+    entity.animations.add('down', [0, 1, 2], 10, true);
+    entity.animations.add('left', [12, 13, 14], 10, true);
+    entity.animations.add('right', [24, 25, 26], 10, true);
+    return entity;
+};
 Player.add = function(id, x, y){
     console.log("addNewPlayer");
-    game.playerMap[id] = game.add.sprite(x, y, 'characters');
-    game.physics.arcade.enable(game.playerMap[id]);
-    game.playerMap[id].body.collideWorldBounds = true;
-    game.playerMap[id].animations.add('up', [36, 37, 38], 10, true);
-    game.playerMap[id].animations.add('down', [0, 1, 2], 10, true);
-    game.playerMap[id].animations.add('left', [12, 13, 14], 10, true);
-    game.playerMap[id].animations.add('right', [24, 25, 26], 10, true);
+    game.playerMap[id] = Player.create(x, y);
 }
 
 Player.remove = function (id) {
