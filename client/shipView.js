@@ -3,8 +3,9 @@ var shipViewState = {
     player: null,
     preload: function () {
         game.stage.disableVisibilityChange = true;
+        game.stage.backgroundColor = '#04151F';
         game.load.spritesheet('characters', 'assets/sprites/characters.png', 32, 40);
-        this.ship = new Ship('test');
+        this.ship = new Ship('test2');
         //console.log(this.ship);
     },
     create: function () {
