@@ -2,6 +2,7 @@ var Player = function(){
 };
 
 Player.create = function(x, y){
+    console.log('new player');
     var entity = game.add.sprite(x, y, 'characters');
     game.physics.arcade.enable(entity);
     entity.body.collideWorldBounds = true;

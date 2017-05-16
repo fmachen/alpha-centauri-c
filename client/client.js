@@ -8,7 +8,6 @@ Client.sendTest = function () {
 };
 
 Client.sendNewPlayer = function (player) {
-    console.log(player);
     Client.socket.emit('newplayer',player);
 };
 
@@ -27,14 +26,12 @@ Client.socket.on('message',function(data){
 });
 
 Client.socket.on('newplayer', function (data) {
-    console.log('newplayer', data);
-
     Player.add(data.idSocket, data.x, data.y);
 });
 
 Client.socket.on('allplayers', function (data) {
     for (var i = 0; i < data.length; i++) {
-        if(data[i].idSocket != game.me){
+        if(data[i].idSocket == game.me){
             continue;
         }
         Player.add(data[i].idSocket, data[i].x, data[i].y);
