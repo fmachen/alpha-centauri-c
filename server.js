@@ -71,9 +71,9 @@ io.on('connection', function (client) {
         client.broadcast.emit('newplayer', client.player);
     });
     client.on('move', function (data) {
-        console.log(data);
-        console.log('click to ' + data.x + ', ' + data.y);
-        console.log(client.player);
+        //console.log(data);
+        //console.log('click to ' + data.x + ', ' + data.y);
+        //console.log(client.player);
         client.player.x = data.x;
         client.player.y = data.y;
         client.broadcast.emit('move', client.player);

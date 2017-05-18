@@ -5,11 +5,12 @@ var shipViewState = {
         game.stage.disableVisibilityChange = true;
         game.stage.backgroundColor = '#04151F';
         game.load.spritesheet('characters', 'assets/sprites/characters.png', 32, 40);
+
         this.ship = new Ship('test2');
-        //console.log(this.ship);
+        console.log(this.ship);
     },
     create: function () {
-
+        this.ship.create();
         this.player = Player.create();
         Client.sendNewPlayer(
             {
@@ -25,31 +26,36 @@ var shipViewState = {
         // Create cursors
         this.cursors = game.input.keyboard.createCursorKeys();
 
-        this.map = game.add.tiles
+        // Set player collision
+
+        console.log(this.ship.layers[1]);
+
     },
     update: function () {
+        var self = this;
         this.player.moving = false;
+        this.player.body.velocity.x = 0;
+        this.player.body.velocity.y = 0;
+        this.ship.getLayersCollision().forEach(function(layer){
+            game.physics.arcade.collide(self.player,layer,function(player, layer){
+                //console.log(player);
+            });
+        });
         if (this.cursors.up.isDown) {
             this.player.moving = true;
-            this.player.body.y -= 5;
+            this.player.body.velocity.y = -250;
             this.player.animations.play('up');
-        }
-
-        if (this.cursors.down.isDown) {
+        }else if (this.cursors.down.isDown) {
             this.player.moving = true;
-            this.player.body.y += 5;
+            this.player.body.velocity.y = 250;
             this.player.animations.play('down');
-        }
-
-        if (this.cursors.left.isDown) {
+        }else if (this.cursors.left.isDown) {
             this.player.moving = true;
-            this.player.body.x -= 5;
+            this.player.body.velocity.x = -250;
             this.player.animations.play('left');
-        }
-
-        if (this.cursors.right.isDown) {
+        }else if (this.cursors.right.isDown) {
             this.player.moving = true;
-            this.player.body.x += 5;
+            this.player.body.velocity.x = 250;
             this.player.animations.play('right');
         }
         if (!this.player.moving) {
