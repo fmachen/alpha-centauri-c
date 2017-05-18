@@ -2,6 +2,7 @@ var Ship = function (type) {
     this.type = type;
     this.layersCollision = [];
     this.readFile();
+    this.spawns = [];
 };
 
 Ship.prototype.readFile = function () {
@@ -54,9 +55,11 @@ Ship.prototype.create = function () {
         if (this.shipJson.layers[l].properties != undefined) {
             self.applyProperties(l);
         }
+        if( this.shipJson.layers[l].name == "spawn"){
+            self.setSpawn(l);
+        }
         console.log(this.shipJson.layers[l].name);
     }
-    //this.map.setLayer(1);
     console.log(this.map.currentLayer);
 };
 
@@ -64,15 +67,11 @@ Ship.prototype.applyProperties = function (layerIndex) {
     console.log('Ship apply properties');
     console.log(this.shipJson.layers[layerIndex].properties.collision);
     console.log(this.layers[layerIndex]);
-    //console.log(this.map);
     if (this.shipJson.layers[layerIndex].properties.collision != undefined && this.shipJson.layers[layerIndex].properties.collision) {
-        //game.physics.arcade.enable(this.layers[layerIndex]);
+
         this.layers[layerIndex].collision = true;
-        this.layers[layerIndex].debug=true;
-        console.log(this.layers[layerIndex].name);
+        //this.layers[layerIndex].debug=true;
         this.map.setCollisionBetween(1, 12, true, this.layers[layerIndex].name, true);
-        //this.map.setCollision(6, true, this.layers[layerIndex].name);
-        //console.log(this.map);
     }
 }
 
@@ -85,3 +84,14 @@ Ship.prototype.getLayersCollision = function(){
     }
     return layers;
 }
+
+Ship.prototype.setSpawn = function (layerIndex) {
+    for( var i in this.shipJson.layers[layerIndex].objects)  {
+        this.spawns.push({
+            x: this.shipJson.layers[layerIndex].objects[i].x,
+            y: this.shipJson.layers[layerIndex].objects[i].y
+        });
+    }
+}
+    
+
