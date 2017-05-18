@@ -15,6 +15,8 @@ var loadState = {
 
     },
     create: function () {
-        game.state.start('title');
+        window.setTimeout(function () {
+            game.state.start('title');
+        }, 1000);
     }
 };
