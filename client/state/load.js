@@ -4,9 +4,6 @@ var loadState = {
             font: '30px Courier', fill: '#fff', align: "center", boundsAlignH: "center", boundsAlignV: "middle"
         });
 
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        game.scale.PageAlignHorizonally = true;
-        game.scale.PageAlignVertically = true;
         game.stage.backgroundColor = '#000';
 
         /**** Load graphics assets ****/
