@@ -1,2 +1,6 @@
+### macOS ###
+*.DS_Store
+.AppleDouble
+
+### PhpStorm ###
 .idea
-node_modules
