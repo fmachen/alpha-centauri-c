@@ -71,6 +71,21 @@
             </div>
         </nav>
 
+        @auth
+            <div class="container">
+                <aside class="col-md-8 col-md-offset-2">
+                    Spaceship
+                    <a href="{{ route('spaceship.list') }}">list</a>
+                    <a href="{{ route('spaceship.new') }}">new</a>
+                    <a href="{{ route('spaceship.show', 0) }}">show</a>
+                    <a href="{{ route('spaceship.build', 0) }}">build</a>
+                    <a href="{{ route('spaceship.crew', 0) }}">crew</a>
+                    <a href="{{ route('spaceship.map', 0) }}">map</a>
+                    <a href="{{ route('spaceship.jump', 0) }}">jump</a>
+                </aside>
+            </div>
+        @endauth
+
         @yield('content')
     </div>
 
