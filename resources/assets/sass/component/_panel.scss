@@ -1,0 +1,38 @@
+.panel {
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    padding: .5rem;
+    padding-left: 5%;
+    width: 100%;
+    background: $gray-10;
+    border-bottom: .2rem solid $gray-40;
+  }
+  &__tab {
+    background: $gray-10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    & + .panel__title {
+      margin-left: 1rem;
+    }
+  }
+  &__title {
+    color: $blue-ice;
+    font-size: 2.2rem;
+  }
+  &__content {
+    padding: .5rem .5rem 1rem 5%;
+    width: 100%;
+    background: $gray-10;
+    color: $blue-space;
+    p, li, a {
+      color: $gray-80;
+    }
+  }
+  &--open {
+    padding-bottom: 1rem;
+  }
+}

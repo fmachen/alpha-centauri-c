@@ -1,0 +1,13 @@
+.report {
+  width: 100%;
+  border: .1rem solid $black;
+  td {
+    padding: .5rem;
+
+  }
+  tr {
+    + tr {
+      border-top: .1rem solid $gray-50;
+    }
+  }
+}

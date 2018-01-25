@@ -1,0 +1,38 @@
+
+.text {
+  &-left {
+    text-align: left;
+  }
+  &-right {
+    text-align: right;
+  }
+  &-center {
+    text-align: center;
+  }
+}
+
+h1 {
+  font-size: 2.6rem;
+  line-height: 1.4;
+  @include small {
+    font-size: 3rem;
+    line-height: 1.2;
+  }
+}
+
+h2 {
+  font-size: 2.2rem;
+  line-height: 1.4;
+  @include small {
+    font-size: 2.6rem;
+  }
+}
+
+h3 {
+  font-size: 2rem;
+  text-decoration: underline;
+  line-height: 1.4;
+  @include small {
+    font-size: 2.4rem;
+  }
+}

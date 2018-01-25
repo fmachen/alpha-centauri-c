@@ -1,0 +1,22 @@
+.card {
+  background: rgba($gray-50, .3);
+  &__header {
+    padding: 1.5rem 1rem;
+    background: $gray-10;
+    color: $blue-ice;
+    font-weight: 600;
+    font-size: 2rem;
+  }
+  &__body {
+    padding: 1.5rem 1rem;
+    border-bottom: .2rem solid $gray-90;
+  }
+  &__actions {
+
+  }
+}
+
+.card__header + .card__body {
+  background: rgba($gray-50, .2);
+  border-top: .2rem solid $gray-80;
+}

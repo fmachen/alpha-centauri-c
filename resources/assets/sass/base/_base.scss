@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(1em * .625);
+  font-family: sans-serif;
+  scroll-behavior: smooth;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: 1.6rem;
+  color: $white;
+  background-color: $violet-space;
+}
+
+a {
+  color: $white;
+}
+
+img {
+  max-width: 100%;
+}

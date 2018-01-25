@@ -1,0 +1,9 @@
+.header {
+  background: $violet-space;
+  box-shadow: 0 .1rem 1rem -.2rem $black;
+  border: .1rem solid $gray-50;
+  padding: 1rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: $max-content-size;
+}

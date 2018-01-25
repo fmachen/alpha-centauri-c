@@ -1,0 +1,33 @@
+$max-content-size: 128rem;
+$nb-cols: 12;
+$gutters: (
+        '':1rem,
+        '-m':2rem,
+        '-xl':3rem
+);
+
+/**
+ * Breakpoints
+ */
+
+/* Base on 16px default size */
+
+$tiny-screen: 20em !default; // 320px
+$tiny-plus-screen: 30em !default; // 480px
+$small-screen: 40em !default; // 640px
+$small-plus-screen: 48em !default; // 768px
+$medium-screen: 60em !default; // 960px
+$medium-plus-screen: 64em !default; // 1024px
+$large-screen: 80em !default; // 1280px
+$large-plus-screen: 90em !default; // 1440px
+$extra-large-screen: 100em !default; // 1600px
+$ultra-large-screen: 120em !default; // 1920px
+$ultima-large-screen: 160em !default; // 2560px
+
+/**
+ * Main prefixes breakpoints
+ */
+
+$prefixes-mq: 'tiny' $tiny-screen, 'small' $small-plus-screen, 'medium' $medium-screen, 'large' $large-screen;
+
+$font-primary: 'Fira Sans Condensed', sans-serif;

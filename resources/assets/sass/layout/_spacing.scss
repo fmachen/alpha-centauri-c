@@ -1,0 +1,49 @@
+$directions: 't' 'top', 'l' 'left', 'b' 'bottom', 'r' 'right';
+$paddingSizes: 'a' 'auto', 'xs' '.5rem', 's' '1rem', 'm' '2rem', 'l' '3rem', 'xl' '4rem';
+.ps {
+  padding: .5rem;
+}
+
+@each $key, $size in $paddingSizes {
+  .p#{$key} {
+    padding: #{$size};
+  }
+  @each $dirKey, $dirValue in $directions {
+    @each $prefix, $value in ($prefixes-mq) {
+      .p#{$dirKey}#{$key} {
+        padding-#{$dirValue}: #{$size};
+      }
+      @include mq($value) {
+        .p#{$dirKey}#{$key}--#{$prefix} {
+          padding-#{$dirValue}: #{$size};
+        }
+      }
+    }
+  }
+}
+
+.mxa {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+$marginSizes: 'a' 'auto', 'xs' '.5rem', 's' '1rem', 'm' '2rem', 'l' '3rem', 'xl' '4rem';
+
+@each $key, $size in $marginSizes {
+  .m#{$key} {
+    margin: #{$size};
+  }
+  @each $dirKey, $dirValue in $directions {
+    @each $prefix, $value in ($prefixes-mq) {
+      .m#{$dirKey}#{$key} {
+        margin-#{$dirValue}: #{$size};
+      }
+
+      @include mq($value) {
+        .m#{$dirKey}#{$key}--#{$prefix} {
+          margin-#{$dirValue}: #{$size};
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.bg {
+  &--white {
+    background-color: $white;
+  }
+  &--space {
+    background-color: $blue-space;
+  }
+  &--black {
+    background-color: $black;
+  }
+}

@@ -11,85 +11,68 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:300,400,500,600,700" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+<div class="ultimateWrapper">
+    @guest
+        <div class="flex justify-content-around pts">
+            <div><a href="{{ route('login') }}">Login</a></div>
+            <div><a href="{{ route('register') }}">Register</a></div>
+        </div>
+    @else
+        <div class="panel">
+            <div class="panel__header">
+                <div class="panel__tab">
+                    <i class="icon"><img src="/icon/astronaut.svg" alt="Account"></i>
                 </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                <h2 class="panel__title">Account</h2>
             </div>
-        </nav>
+            <div class="panel__content">
+                <ul>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+                           aria-haspopup="true">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
 
-        @auth
-            <div class="container">
-                <aside class="col-md-8 col-md-offset-2">
-                    Spaceship
-                    <a href="{{ route('spaceship.list') }}">list</a>
-                    <a href="{{ route('spaceship.new') }}">new</a>
-                    <a href="{{ route('spaceship.show', 'starter') }}">show</a>
-                    <a href="{{ route('spaceship.build', 0) }}">build</a>
-                    <a href="{{ route('spaceship.crew', 0) }}">crew</a>
-                    <a href="{{ route('spaceship.map', 0) }}">map</a>
-                    <a href="{{ route('spaceship.jump', 0) }}">jump</a>
-                </aside>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                              style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                </ul>
             </div>
-        @endauth
+        </div>
+    @endguest
+    @auth
+        <div class="panel">
+            <div class="panel__header">
+                <h2 class="panel__title">Spaceship</h2>
+            </div>
+            <div class="panel__content">
+                <a href="{{ route('spaceship.list') }}">list</a>
+                <a href="{{ route('spaceship.new') }}">new</a>
+                <a href="{{ route('spaceship.show', 0) }}">show</a>
+                <a href="{{ route('spaceship.build', 0) }}">build</a>
+                <a href="{{ route('spaceship.crew', 0) }}">crew</a>
+                <a href="{{ route('spaceship.map', 0) }}">map</a>
+                <a href="{{ route('spaceship.jump', 0) }}">jump</a>
+            </div>
+        </div>
+    @endauth
 
-        @yield('content')
-    </div>
+    @yield('content')
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

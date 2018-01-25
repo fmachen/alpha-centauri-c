@@ -1,0 +1,44 @@
+select, input[type="text"], input[type="email"], textarea {
+  --webkit-appareance: none;
+  font-size: 1.6rem;
+}
+
+form {
+  border: .1rem solid $white;
+  padding: 2rem;
+}
+
+label {
+  color: $white;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+  background: transparent;
+  color: $white;
+  border: .1rem solid $white;
+  padding: 1rem .75rem;
+  transition: background .15s ease-in-out;
+  &:focus {
+    background: rgba($white, .1);
+  }
+}
+
+.form--login {
+  max-width: 30rem;
+}
+
+.form__row {
+  & + .form__row {
+    margin-top: 1.5rem;
+  }
+}
+
+.form__help {
+  font-size: 1.4rem;
+  background-color: $red;
+  color: $white;
+  padding: 1rem;
+  margin-top: .5rem;
+}
