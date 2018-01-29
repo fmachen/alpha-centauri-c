@@ -2,13 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\SpaceshipRepository;
+use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 
 class SpaceshipController extends Controller
 {
+    /**
+     * @var SpaceshipRepository
+     */
+    private $sr;
+    /**
+     * @var AuthManager
+     */
+    private $auth;
+
+    public function __construct(SpaceshipRepository $sr, AuthManager $auth)
+    {
+        $this->sr = $sr;
+        $this->auth = $auth;
+    }
+
     public function index()
     {
-        return view('spaceship/index');
+        return view('spaceship/index', [
+            'spaceships' => $this->sr->getSpaceships($this->auth->user()->id)
+        ]);
     }
 
     public function build()

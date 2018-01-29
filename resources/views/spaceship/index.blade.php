@@ -9,6 +9,7 @@
 
                     <div class="panel-body">
                         list !
+                        {{ $spaceships }}
                     </div>
                 </div>
             </div>
