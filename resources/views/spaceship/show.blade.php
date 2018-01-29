@@ -8,7 +8,7 @@
                     <div class="panel-heading">Spaceship show</div>
 
                     <div class="panel-body">
-                        show !
+                        show ! {{ $spaceship }}
                     </div>
                 </div>
             </div>

@@ -37,7 +37,9 @@ class SpaceshipController extends Controller
 
     public function show($shipName)
     {
-        return view('spaceship/show');
+        return view('spaceship/show', [
+            'spaceship' => $this->sr->getSpaceship($this->auth->user()->id, $shipName)
+        ]);
     }
 
     public function crew($shipName)

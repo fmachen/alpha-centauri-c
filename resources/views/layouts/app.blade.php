@@ -77,7 +77,7 @@
                     Spaceship
                     <a href="{{ route('spaceship.list') }}">list</a>
                     <a href="{{ route('spaceship.new') }}">new</a>
-                    <a href="{{ route('spaceship.show', 0) }}">show</a>
+                    <a href="{{ route('spaceship.show', 'starter') }}">show</a>
                     <a href="{{ route('spaceship.build', 0) }}">build</a>
                     <a href="{{ route('spaceship.crew', 0) }}">crew</a>
                     <a href="{{ route('spaceship.map', 0) }}">map</a>
