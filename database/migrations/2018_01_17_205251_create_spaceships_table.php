@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSpaceshipTable extends Migration
+class CreateSpaceshipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSpaceshipTable extends Migration
      */
     public function up()
     {
-        Schema::create('spaceship', function (Blueprint $table) {
+        Schema::create('spaceships', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_ref');
             $table->foreign('user_ref', 'user')->references('id')->on('users');
             $table->unsignedInteger('type_ref');
-            $table->foreign('type_ref', 'type')->references('id')->on('spaceship_type');
+            $table->foreign('type_ref', 'type')->references('id')->on('spaceship_types');
             $table->string('name');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateSpaceshipTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spaceship');
+        Schema::dropIfExists('spaceships');
     }
 }
