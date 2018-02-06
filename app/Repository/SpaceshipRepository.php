@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Spaceship;
-use Illuminate\Support\Facades\Auth;
 
 class SpaceshipRepository
 {
