@@ -12,4 +12,7 @@ let mix = require('laravel-mix');
  */
 mix.options({processCssUrls: false});
 mix.js('resources/assets/js/app.js', 'public/js')
-    .sass('resources/assets/sass/page/app.scss', 'public/css');
+    .js('resources/assets/js/homepage.js', 'public/js')
+    .sass('resources/assets/sass/page/app.scss', 'public/css')
+    .sass('resources/assets/sass/page/homepage.scss', 'public/css')
+    .sourceMaps();
