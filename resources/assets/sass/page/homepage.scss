@@ -14,14 +14,9 @@
 @import '../component/button';
 @import '../component/menu';
 
-body {
-  overflow: hidden;
-}
-
 .homepage {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   .menu {
     z-index: 1;
     position: absolute;
@@ -34,14 +29,22 @@ body {
     align-items: center;
     justify-content: center;
     flex: 1;
+    overflow: hidden;
   }
   h1 {
     text-align: center;
     font-size: 3.5rem;
+    line-height: 1.6;
     text-shadow: 0 0 .3rem $white;
     position: relative;
     z-index: 1;
     transition: transform 1s 2.5s ease-in-out, color 1.5s 4s ease-in-out;
+    @include small {
+      font-size: 5rem;
+    }
+    @include medium {
+      font-size: 7rem;
+    }
     &:before {
       content: "";
       z-index: -1;
@@ -51,11 +54,13 @@ body {
       transform: translate(-50%, -50%);
       width: 0;
       height: 0;
-      background: #1f8660;
-      transition: width .5s 4s ease-in-out, height .5s 4.6s ease-in-out;
+      background: #3b4f75;
+      transition: width .5s 4s ease-in-out, height .5s 4.6s ease-in-out, border 0s 4s ease;
     }
     &.animate {
-      transform: translateY(-50%);
+      @include medium-down {
+        transform: translateY(-50%);
+      }
       &:before {
         width: 110%;
         height: 105%;
@@ -70,9 +75,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-
+    overflow: hidden;
     .planet {
-      @include square(30rem);
+      $planetsize: 80vh;
+      @include square($planetsize);
+      max-width: 100vw;
+      max-height: 100vw;
       border-radius: 50%;
       background-image: linear-gradient(165deg,
               #73a9ec 5%,
@@ -88,11 +96,12 @@ body {
       box-shadow: inset -3px -3px 10px 0 rgba(37, 158, 102, 0.6196078431372549), inset 2px 5px 12px rgba(133, 254, 255, 0.8), 0 0 60px -4px #ffffff, 0 0 30px 2px #0088ff, 0 0 8px 1px #2059ff;
       position: absolute;
       bottom: 0;
-      left: 0;
+      right: 0;
       transition: transform 5s ease-in-out;
-      transform: translate(50%, 20%) scale(.025);
+      transform: translate(-20%, -20%) scale(0.05);
+      transform-origin: bottom right;
       &.animate {
-        transform: translate(20%, 20%) scale(2.5);
+        transform: translate(10%, 10%);
       }
     }
   }
