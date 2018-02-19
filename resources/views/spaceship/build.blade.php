@@ -2,15 +2,12 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Spaceship build</div>
+        <h1>Build your spaceship</h1>
 
-                    <div class="panel-body">
-                        build !
-                    </div>
-                </div>
+        <div>
+            <div class="spaceship">
+                <div class="slot" data-type="motor"></div>
+                <div class="slot" data-type="energy"></div>
             </div>
         </div>
     </div>

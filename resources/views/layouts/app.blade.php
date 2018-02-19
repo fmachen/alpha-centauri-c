@@ -25,7 +25,7 @@
         <div class="panel">
             <div class="panel__header">
                 <div class="panel__tab">
-                    <i class="icon"><img src="/icon/astronaut.svg" alt="Account"></i>
+                    <i class="icon">@include('svg.astronaut')</i>
                 </div>
                 <h2 class="panel__title">Account</h2>
             </div>
@@ -53,7 +53,7 @@
         </div>
     @endguest
     @auth
-        <div class="panel">
+        <div class="panel panel--open">
             <div class="panel__header">
                 <h2 class="panel__title">Spaceship</h2>
             </div>

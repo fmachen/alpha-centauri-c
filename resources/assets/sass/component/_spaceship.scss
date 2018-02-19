@@ -1,0 +1,59 @@
+/**
+  Our spaceship is a simple gray square because we are poor and we are bad at design, so ...
+  We'll design spaceship in few weeks !
+ */
+
+.spaceship {
+  border-top-left-radius: 40%;
+  border-top-right-radius: 40%;
+  background: $gray-50;
+  width: 20rem;
+  height: 30rem;
+  text-align: center;
+  padding: 1rem 1rem 3rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  &:before, &:after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 7rem;
+    height: 3rem;
+    background: #d6c3c3;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    box-shadow: 0 10px 10px #47a6d3, 0 15px 50px #ff5200;
+    filter: blur(2px);
+
+  }
+  &:before {
+    transform: translate(-110%, 0);
+  }
+  &:after {
+    transform: translate(10%, 0);
+  }
+  .slot {
+    @include square(4rem);
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 1rem;
+    background: $gray-10;
+    cursor: pointer;
+    transition: background-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    &[data-type="motor"] {
+      border: .2rem solid $red;
+    }
+    &[data-type="energy"] {
+      border: .2rem solid $blue-ice;
+    }
+    &:hover {
+      background: $white;
+      box-shadow: inset 0 0 2px $gray-80, 0 0 10px -2px $white;
+    }
+  }
+}
