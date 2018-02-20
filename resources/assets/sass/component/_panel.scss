@@ -8,6 +8,7 @@
     width: 100%;
     background: $gray-10;
     border-bottom: .2rem solid $gray-40;
+    cursor: pointer;
   }
   &__tab {
     background: $gray-10;
@@ -37,6 +38,10 @@
     width: 3rem;
     height: 3rem;
     top: 0;
+    .panel__header {
+      border: 0;
+      padding: .5rem;
+    }
     .panel__title {
       display: none;
     }

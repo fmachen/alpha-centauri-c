@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="panel">
-        <div class="panel__header">
-            <h2 class="panel__title">Dashboard</h2>
-        </div>
-        <div class="panel__content">
+    <panel :title="'Dashboard'">
+        <i class="icon" slot="icon">@include('svg.dashboard')</i>
+        <div slot="content">
             @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
@@ -23,5 +21,5 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </panel>
 @endsection

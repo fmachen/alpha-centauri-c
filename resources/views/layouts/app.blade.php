@@ -15,21 +15,16 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="ultimateWrapper">
+<div class="ultimateWrapper" id="app">
     @guest
         <div class="flex justify-content-around pts">
             <div><a href="{{ route('login') }}">Login</a></div>
             <div><a href="{{ route('register') }}">Register</a></div>
         </div>
     @else
-        <div class="panel">
-            <div class="panel__header">
-                <div class="panel__tab">
-                    <i class="icon">@include('svg.astronaut')</i>
-                </div>
-                <h2 class="panel__title">Account</h2>
-            </div>
-            <div class="panel__content">
+        <panel :title="'Account'">
+            <i class="icon" slot="icon">@include('svg.astronaut')</i>
+            <div slot="content">
                 <ul>
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
@@ -50,14 +45,12 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </panel>
     @endguest
     @auth
-        <div class="panel panel--open">
-            <div class="panel__header">
-                <h2 class="panel__title">Spaceship</h2>
-            </div>
-            <div class="panel__content">
+        <panel :title="'Spaceship'">
+            <i class="icon" slot="icon">@include('svg.rocket')</i>
+            <div slot="content">
                 <a href="{{ route('spaceship.list') }}">list</a>
                 <a href="{{ route('spaceship.new') }}">new</a>
                 <a href="{{ route('spaceship.show', 0) }}">show</a>
@@ -66,7 +59,7 @@
                 <a href="{{ route('spaceship.map', 0) }}">map</a>
                 <a href="{{ route('spaceship.jump', 0) }}">jump</a>
             </div>
-        </div>
+        </panel>
     @endauth
 
     @yield('content')
