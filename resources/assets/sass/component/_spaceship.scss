@@ -1,59 +1,66 @@
-/**
-  Our spaceship is a simple gray square because we are poor and we are bad at design, so ...
-  We'll design spaceship in few weeks !
- */
 
 .spaceship {
-  border-top-left-radius: 40%;
-  border-top-right-radius: 40%;
-  background: $gray-50;
-  width: 20rem;
-  height: 30rem;
-  text-align: center;
-  padding: 1rem 1rem 3rem;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  margin: 10rem auto;
   position: relative;
-  &:before, &:after {
-    content: "";
-    z-index: -1;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    width: 7rem;
-    height: 3rem;
-    background: #d6c3c3;
-    border-bottom-right-radius: 50%;
-    border-bottom-left-radius: 50%;
-    box-shadow: 0 10px 10px #47a6d3, 0 15px 50px #ff5200;
-    filter: blur(2px);
-
-  }
-  &:before {
-    transform: translate(-110%, 0);
-  }
-  &:after {
-    transform: translate(10%, 0);
-  }
   .slot {
-    @include square(4rem);
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 1rem;
-    background: $gray-10;
-    cursor: pointer;
-    transition: background-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    &[data-type="motor"] {
-      border: .2rem solid $red;
+    background-color: #e1e1e1;
+    display: block;
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    &[data-size="0"] {
+      @include square(17.5rem);
     }
-    &[data-type="energy"] {
-      border: .2rem solid $blue-ice;
+    &[data-size="1"] {
+      @include square(17.5rem, 15rem);
     }
-    &:hover {
-      background: $white;
-      box-shadow: inset 0 0 2px $gray-80, 0 0 10px -2px $white;
+    &[data-size="2"] {
+      @include square(20rem, 25rem);
+    }
+    &[data-type="engine"] {
+      background-image: url('../img/room/icon/engine.png');
+    }
+    &[data-type="cockpit"] {
+      background-image: url('../img/room/icon/cockpit.png');
+    }
+    &[data-type="supply"] {
+      background-image: url('../img/room/icon/supply.png');
+    }
+    &[data-type="passengers"] {
+      background-image: url('../img/room/icon/passengers.png');
+    }
+    &[data-type=""] {
+    }
+  }
+
+  &[data-type="starter"] {
+    width: 80rem;
+    height: 60rem;
+    background-image: url('../img/spaceship/starter-hull.png');
+    .slot {
+      cursor: pointer;
+      border: 4px solid #444444;
+      z-index: 0;
+      &:hover {
+        box-shadow: 0 0 10px white;
+        z-index: 1;
+      }
+      &[data-type="engine"] {
+        top: 17.5rem;
+        left: 15rem;
+      }
+      &[data-type="cockpit"] {
+        top: 22.5rem;
+        left: 52.5rem;
+      }
+      &[data-type="supply"] {
+        top: 30rem;
+        left: 35rem;
+      }
+      &[data-type=""] {
+        top: 12.5rem;
+        left: 35rem;
+      }
     }
   }
 }
