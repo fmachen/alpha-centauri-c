@@ -1,10 +1,13 @@
 .panel {
+
+  display: inline-block;
   padding-bottom: 1rem;
+  position: relative;
+  vertical-align: top;
   &__header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding: .5rem;
-    padding-left: 5%;
     width: 100%;
     background: $gray-10;
     border-bottom: .2rem solid $gray-40;
@@ -18,12 +21,14 @@
     width: 2.5rem;
     height: 2.5rem;
     & + .panel__title {
-      margin-left: 1rem;
+      margin: 0 1rem;
     }
   }
   &__title {
     color: $blue-ice;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
   }
   &__content {
     padding: .5rem .5rem 1rem 5%;
@@ -34,10 +39,28 @@
       color: $gray-80;
     }
   }
+  &__links {
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      position: relative;
+      padding: .7rem 1rem;
+      &:before {
+        content: "";
+        display: block;
+        width: .8rem;
+        margin-left: .25rem;
+        margin-right: 1rem;
+        border-top: $blue-space 2px solid;
+      }
+      &:hover {
+        background: white;
+        color: $blue-space;
+      }
+    }
+  }
   &:not(.panel--open) {
-    width: 3rem;
-    height: 3rem;
-    top: 0;
     .panel__header {
       border: 0;
       padding: .5rem;

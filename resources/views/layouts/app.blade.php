@@ -16,52 +16,78 @@
 </head>
 <body>
 <div class="ultimateWrapper" id="app">
-    @guest
-        <div class="flex justify-content-around pts">
-            <div><a href="{{ route('login') }}">Login</a></div>
-            <div><a href="{{ route('register') }}">Register</a></div>
-        </div>
-    @else
-        <panel :title="'Account'">
-            <i class="icon" slot="icon">@include('svg.astronaut')</i>
-            <div slot="content">
-                <ul>
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-                           aria-haspopup="true">
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('logout') }}"
-                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
+    <div>
+        @guest
+            <nav class="menu">
+                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('register') }}">Register</a>
+            </nav>
+        @else
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                              style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </panel>
-    @endguest
-    @auth
-        <panel :title="'Spaceship'">
-            <i class="icon" slot="icon">@include('svg.rocket')</i>
-            <div slot="content">
-                <a href="{{ route('spaceship.list') }}">list</a>
-                <a href="{{ route('spaceship.new') }}">new</a>
-                <a href="{{ route('spaceship.show', 0) }}">show</a>
-                <a href="{{ route('spaceship.build', 0) }}">build</a>
-                <a href="{{ route('spaceship.crew', 0) }}">crew</a>
-                <a href="{{ route('spaceship.map', 0) }}">map</a>
-                <a href="{{ route('spaceship.jump', 0) }}">jump</a>
-            </div>
-        </panel>
-    @endauth
+            <panel :title="'Account'">
+                <i class="icon" slot="icon">@include('svg.astronaut')</i>
+                <div slot="content">
+                    <ul>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"
+                               aria-haspopup="true">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
 
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </panel>
+        @endguest
+        @auth
+            <panel :title="'Spaceship'">
+                <i class="icon" slot="icon">@include('svg.rocket')</i>
+                <div slot="content">
+                    <ul class="panel__links">
+                        <a href="{{ route('spaceship.list') }}">list</a>
+                        <a href="{{ route('spaceship.new') }}">new</a>
+                        <a href="{{ route('spaceship.show', 0) }}">show</a>
+                        <a href="{{ route('spaceship.build', 0) }}">build</a>
+                        <a href="{{ route('spaceship.crew', 0) }}">crew</a>
+                        <a href="{{ route('spaceship.map', 0) }}">map</a>
+                        <a href="{{ route('spaceship.jump', 0) }}">jump</a>
+                    </ul>
+                </div>
+            </panel>
+            <panel :title="'Dashboard'">
+                <i class="icon" slot="icon">@include('svg.dashboard')</i>
+                <div slot="content">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <p class="mbs">Here is your last report :</p>
+                    <table class="report">
+                        <tr>
+                            <td>Iron</td>
+                            <td>202 T</td>
+                        </tr>
+                        <tr>
+                            <td>Water</td>
+                            <td>300 m<sup>3</sup></td>
+                        </tr>
+                    </table>
+                </div>
+            </panel>
+        @endauth
+    </div>
     @yield('content')
 </div>
 
