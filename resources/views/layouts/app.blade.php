@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="ultimateWrapper" id="app">
-    <div>
+    <div class="container">
         @guest
             <nav class="menu">
                 <a href="{{ route('login') }}">Login</a>

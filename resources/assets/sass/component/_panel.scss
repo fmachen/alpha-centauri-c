@@ -9,12 +9,10 @@
     align-items: center;
     padding: .5rem;
     width: 100%;
-    background: $gray-10;
-    border-bottom: .2rem solid $gray-40;
+    background-color: $gray-30;
     cursor: pointer;
   }
   &__tab {
-    background: $gray-10;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,6 +25,7 @@
   &__title {
     color: $blue-ice;
     font-size: 1.8rem;
+    text-shadow: 0 0 3px white;
     text-transform: uppercase;
     font-weight: 700;
   }
@@ -34,7 +33,10 @@
     padding: .5rem .5rem 1rem 5%;
     width: 100%;
     background: $gray-10;
+    box-shadow: inset 0 2px 2px $gray-50;
     color: $blue-space;
+    position: absolute;
+    z-index: 100;
     p, li, a {
       color: $gray-80;
     }
@@ -64,6 +66,7 @@
     .panel__header {
       border: 0;
       padding: .5rem;
+      background: $gray-10;
     }
     .panel__title {
       display: none;
