@@ -64,3 +64,42 @@
     }
   }
 }
+
+.spaceship__specification {
+  border: 1px solid #afafaf;
+  padding: 1rem;
+  background: white;
+  color: black;
+
+  thead {
+    font-size: 1.8rem;
+    color: white;
+
+    //background-color: #1a1919;
+    text-align: left;
+    td {
+      padding: 1rem;
+      background-image: linear-gradient(150deg, #70a3d0 0%, #286794 100%);
+      font-weight: 500;
+      color: white;
+    }
+  }
+  tbody {
+    tr {
+      & + tr {
+        border-top: 1px solid black;
+      }
+      &:nth-child(even) {
+        background-color: #d9f2ff;
+      }
+    }
+    td {
+      padding: .75rem;
+      font-size: 1.6rem;
+      & + td {
+        text-align: right;
+      }
+    }
+  }
+
+}
