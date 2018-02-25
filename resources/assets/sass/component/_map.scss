@@ -1,0 +1,59 @@
+.map {
+
+}
+
+.zone {
+  @include square(7rem);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.6, 0.04, 0.02, 0.95);
+  &--white {
+    background-image: radial-gradient(closest-side, white 15%, #bdffff 39%, white 62%, transparent 100%);
+  }
+  &--blue {
+    background-image: radial-gradient(closest-side, #b6ebff 15%, #68a7cc 39%, #b6ebff 62%, transparent 100%);
+  }
+  &--red {
+    background-image: radial-gradient(closest-side, #ffe2e2 15%, #ff7e7e 39%, #ffdddd 62%, transparent 100%);
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    @include square(9rem);
+    border: 2px solid #00ff7a;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    opacity: 0;
+  }
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+    &:after {
+      border-left-color: white;
+      border-right-color: white;
+      opacity: 1;
+      animation: zoneCurrent 3s infinite linear;
+    }
+  }
+  &--current {
+    // Tracker qui tourne
+    &:after {
+      opacity: 1;
+      animation: zoneCurrent 3s infinite linear;
+    }
+  }
+}
+
+@keyframes zoneCurrent {
+  from {
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

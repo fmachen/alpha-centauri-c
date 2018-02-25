@@ -2,16 +2,11 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Spaceship map</div>
-
-                    <div class="panel-body">
-                        map !
-                    </div>
-                </div>
-            </div>
+        <h1>Spaceship map</h1>
+        <div class="map">
+            <div class="zone zone--white" style="top: 50%; left: 33%;"></div>
+            <div class="zone zone--blue zone--current" style="top: 30%; left: 52%;"></div>
+            <div class="zone zone--red" style="top: 70%; left: 72%;"></div>
         </div>
     </div>
 @endsection
