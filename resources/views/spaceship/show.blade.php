@@ -3,14 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Spaceship show</div>
+            <h1>Spaceship show</h1>
 
-                    <div class="panel-body">
-                        show ! {{ $spaceship }}
-                    </div>
-                </div>
+            <div class="panel-body">
+                Bienvenue sur le "{{ $spaceship->name }}" ! Le plus beau vaisseau de la galaxie :)
             </div>
         </div>
     </div>

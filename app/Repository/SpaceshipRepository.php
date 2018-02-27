@@ -31,6 +31,6 @@ class SpaceshipRepository
             ->select()
             ->where('user_ref', $userId)
             ->where('name', $spaceshipName)
-            ->get();
+            ->first();
     }
 }
