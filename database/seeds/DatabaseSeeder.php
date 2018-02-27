@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(SpaceshipTypesTableSeeder::class);
         $this->call(SpaceshipsTableSeeder::class);
+        $this->call(SpaceshipRoomsTableSeeder::class);
     }
 }
