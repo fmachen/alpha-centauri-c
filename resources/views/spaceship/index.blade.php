@@ -4,14 +4,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Spaceship list</div>
+                <h1>Spaceship list</h1>
 
-                    <div class="panel-body">
-                        list !
-                        {{ $spaceships }}
-                    </div>
-                </div>
+                <ul>
+                    @foreach($spaceships as $spaceship)
+                        <li>
+                            <a href="{{ route("spaceship.show", ["name"=>$spaceship->name]) }}">
+                                {{ $spaceship->name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>
