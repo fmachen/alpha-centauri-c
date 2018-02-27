@@ -12,8 +12,23 @@ class SpaceshipTypesTableSeeder extends Seeder
     public function run()
     {
         \Illuminate\Support\Facades\DB::table('spaceship_types')->insert([
-            "id" => 1,
-            "name" => "starter",
+            "name" => "Starter",
+            "nb_rooms" => 4
+        ]);
+        \Illuminate\Support\Facades\DB::table('spaceship_types')->insert([
+            "name" => "Battleship",
+            "nb_rooms" => 4
+        ]);
+        \Illuminate\Support\Facades\DB::table('spaceship_types')->insert([
+            "name" => "Cargo ship",
+            "nb_rooms" => 4
+        ]);
+        \Illuminate\Support\Facades\DB::table('spaceship_types')->insert([
+            "name" => "Spacecruiser",
+            "nb_rooms" => 4
+        ]);
+        \Illuminate\Support\Facades\DB::table('spaceship_types')->insert([
+            "name" => "Scout ship",
             "nb_rooms" => 4
         ]);
     }
