@@ -3,6 +3,15 @@
 @section('content')
     <div class="container">
         <h1>Build your spaceship</h1>
+
+        <hr>
+
+        {{ $shipTypes }}
+        <br><br>
+        {{ $shipRooms }}
+
+        <hr>
+
         <div class="flex">
             <div class="spaceship" data-type="starter">
                 <div class="slot" data-type="engine" data-size="2"></div>

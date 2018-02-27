@@ -32,7 +32,10 @@ class SpaceshipController extends Controller
 
     public function build()
     {
-        return view('spaceship/build');
+        return view('spaceship/build', [
+            'shipTypes' => \App\SpaceshipType::query()->select()->get(),
+            'shipRooms' => \App\SpaceshipRoom::query()->select()->get()
+        ]);
     }
 
     public function show($shipName)
