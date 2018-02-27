@@ -13,7 +13,8 @@ class SpaceshipTypesTableSeeder extends Seeder
     {
         \Illuminate\Support\Facades\DB::table('spaceship_types')->insert([
             "id" => 1,
-            "name" => "starter"
+            "name" => "starter",
+            "nb_rooms" => 4
         ]);
     }
 }

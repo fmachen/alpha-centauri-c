@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSpaceshipTypesTable extends Migration
+class CreateSpaceshipHasRoomTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateSpaceshipTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('spaceship_types', function (Blueprint $table) {
+        Schema::create('spaceship_has_room', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->unsignedTinyInteger('nb_rooms');
-
-            $table->unique('name');
+            $table->integer('spaceship_ref')->unsigned();
+            $table->integer('spaceship_room_ref')->unsigned();
+            $table->integer('spaceship_room_number')->unsigned();
         });
     }
 
@@ -29,6 +28,6 @@ class CreateSpaceshipTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spaceship_types');
+        Schema::dropIfExists('spaceship_has_room');
     }
 }
