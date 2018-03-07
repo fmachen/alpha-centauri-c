@@ -9,6 +9,8 @@
         {{ $shipTypes }}
         <br><br>
         {{ $shipRooms }}
+        <br><br>
+        {{ $selectedType }}
 
         <hr>
 
@@ -20,6 +22,19 @@
                 <div class="slot" data-type="" data-size="0"></div>
             </div>
             <div class="prm plm">
+                <form method="get">
+                    <label for="ship_type">Ship type :</label>
+                    <select name="ship_type" id="ship_type">
+                        @foreach($shipTypes as $shipType)
+                            <option value="{{ $shipType->id }}"
+                                    @if($shipType->id == $selectedType->id) selected="selected"@endif>
+                                {{ $shipType->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <input type="submit">
+                </form>
+
                 <table class="spaceship__specification">
                     <thead>
                     <tr>

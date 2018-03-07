@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repository\SpaceshipRepository;
 use Illuminate\Auth\AuthManager;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class SpaceshipController extends Controller
 {
@@ -32,9 +32,11 @@ class SpaceshipController extends Controller
 
     public function build()
     {
+        $selectedType = Input::get('ship_type');
         return view('spaceship/build', [
             'shipTypes' => \App\SpaceshipType::query()->select()->get(),
-            'shipRooms' => \App\SpaceshipRoom::query()->select()->get()
+            'shipRooms' => \App\SpaceshipRoom::query()->select()->get(),
+            'selectedType' => \App\SpaceshipType::query()->select()->where('id', '=', $selectedType)->first()
         ]);
     }
 
