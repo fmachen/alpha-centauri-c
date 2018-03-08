@@ -27,13 +27,29 @@
                     <select name="ship_type" id="ship_type">
                         @foreach($shipTypes as $shipType)
                             <option value="{{ $shipType->id }}"
-                                    @if($shipType->id == $selectedType->id) selected="selected"@endif>
+                                    @if($selectedType && $shipType->id == $selectedType->id) selected="selected"@endif
+                            >
                                 {{ $shipType->name }}
                             </option>
                         @endforeach
                     </select>
                     <input type="submit">
                 </form>
+
+                @if($selectedType)
+                    <form method="post">
+                        @for($i = 1; $i <= $selectedType->nb_rooms; $i++)
+                            <label for="ship_type[{{ $i }}]">Room {{ $i }} :</label>
+                            <select name="ship_type[{{ $i }}]" id="ship_type[{{ $i }}]">
+                                @foreach($shipRooms as $shipRoom)
+                                    <option value="{{ $shipRoom->id }}">{{ $shipRoom->name }}</option>
+                                @endforeach
+                            </select>
+                        @endfor
+                        {{ csrf_field() }}
+                        <input type="submit">
+                    </form>
+                @endif
 
                 <table class="spaceship__specification">
                     <thead>
