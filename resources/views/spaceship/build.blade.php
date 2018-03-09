@@ -15,11 +15,25 @@
         <hr>
 
         <div class="flex">
-            <div class="spaceship" data-type="starter">
-                <div class="slot" data-type="engine" data-size="2"></div>
-                <div class="slot" data-type="cockpit" data-size="1"></div>
-                <div class="slot" data-type="supply" data-size="0"></div>
-                <div class="slot" data-type="" data-size="0"></div>
+            <div>
+                <div class="spaceship" data-type="starter">
+                    <div class="slot" data-type="engine" data-size="2"></div>
+                    <div class="slot" data-type="cockpit" data-size="1"></div>
+                    <div class="slot" data-type="supply" data-size="0"></div>
+                    <div class="slot" data-type="" data-size="0"></div>
+                </div>
+                <div class="spaceship" data-type="simplepassenger">
+                    <div class="slot" data-type="engine" data-size="2"></div>
+                    <div class="slot" data-type="cockpit" data-size="1"></div>
+                    <div class="slot" data-type="passenger" data-size="0"></div>
+                </div>
+                <div class="spaceship" data-type="minier">
+                    <div class="slot" data-type="engine" data-size="2"></div>
+                    <div class="slot" data-type="cockpit" data-size="1"></div>
+                    <div class="slot" data-type="supply" data-size="0"></div>
+                    <div class="slot" data-type="soute" data-size="0"></div>
+                    <div class="slot" data-type="miningtool" data-size="3"></div>
+                </div>
             </div>
             <div class="prm plm">
                 <form method="get">

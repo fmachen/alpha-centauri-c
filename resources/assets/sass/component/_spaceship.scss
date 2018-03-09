@@ -8,6 +8,13 @@
     position: absolute;
     background-position: center;
     background-repeat: no-repeat;
+    cursor: pointer;
+    border: 4px solid #444444;
+    z-index: 0;
+    &:hover {
+      box-shadow: 0 0 10px white;
+      z-index: 1;
+    }
     &[data-size="0"] {
       @include square(17.5rem);
     }
@@ -16,6 +23,9 @@
     }
     &[data-size="2"] {
       @include square(20rem, 25rem);
+    }
+    &[data-size="3"] {
+      @include square(10rem, 5rem);
     }
     &[data-type="engine"] {
       background-image: url('../img/room/icon/engine.png');
@@ -29,6 +39,12 @@
     &[data-type="passengers"] {
       background-image: url('../img/room/icon/passengers.png');
     }
+    &[data-type="soute"] {
+      background-image: url('../img/room/icon/soute.png');
+    }
+    &[data-type="miningtool"] {
+      background-image: url('../img/weapon/miningtool.png');
+    }
     &[data-type=""] {
     }
   }
@@ -38,13 +54,6 @@
     height: 60rem;
     background-image: url('../img/spaceship/starter-hull.png');
     .slot {
-      cursor: pointer;
-      border: 4px solid #444444;
-      z-index: 0;
-      &:hover {
-        box-shadow: 0 0 10px white;
-        z-index: 1;
-      }
       &[data-type="engine"] {
         top: 17.5rem;
         left: 15rem;
@@ -63,6 +72,55 @@
       }
     }
   }
+
+  &[data-type="simplepassenger"] {
+    width: 80rem;
+    height: 60rem;
+    background-image: url('../img/spaceship/simplepassenger-hull.png');
+    .slot {
+      &[data-type="engine"] {
+        top: 17.5rem;
+        left: 15rem;
+      }
+      &[data-type="cockpit"] {
+        top: 22.5rem;
+        left: 52.5rem;
+      }
+      &[data-type="passenger"] {
+        top: 21.25rem;
+        left: 35rem;
+      }
+    }
+  }
+
+  &[data-type="minier"] {
+    width: 80rem;
+    height: 60rem;
+    background-image: url('../img/spaceship/minier-hull.png');
+    .slot {
+      &[data-type="engine"] {
+        top: 17.5rem;
+        left: 15rem;
+      }
+      &[data-type="cockpit"] {
+        top: 22.5rem;
+        left: 52.5rem;
+      }
+      &[data-type="supply"] {
+        top: 30rem;
+        left: 35rem;
+      }
+      &[data-type="soute"] {
+        top: 12.5rem;
+        left: 35rem;
+      }
+      &[data-type="miningtool"] {
+        top: 12.5rem;
+        left: 57.5rem;
+      }
+    }
+  }
+
 }
 
 .spaceship__specification {
@@ -99,5 +157,4 @@
       }
     }
   }
-
 }
